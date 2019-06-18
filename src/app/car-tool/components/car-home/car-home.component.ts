@@ -20,7 +20,12 @@ export class CarHomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.httpClient.get<Car[]>('http://localhost:4250/cars').toPromise().then(cars => this.cars = cars);
+    this.httpClient.get<Car[]>('http://localhost:4250/cars')
+      //.toPromise()
+      //.then(cars => this.cars = cars);
+      .subscribe(cars => {
+        this.cars = cars;
+      })
   }
 
 }
