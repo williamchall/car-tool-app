@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-interface Car {
-  id?: number;
-  make: string;
-  model: string;
-  year: number;
-}
+import { Observable } from 'rxjs';
+import { Car } from '../../models/car';
+import { Store, select } from '@ngrx/store';
+import { CarToolState } from '../../car-tool.state';
+import { RefreshCarsRequestAction } from '../../car-tool.actions';
 
 @Component({
   selector: 'app-car-home',
@@ -14,18 +11,16 @@ interface Car {
   styleUrls: ['./car-home.component.css']
 })
 export class CarHomeComponent implements OnInit {
-  public cars: Car[] = [];
+  public cars$: Observable<Car[]>;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private store: Store<CarToolState>,
+  ) {
+  }
 
 
   ngOnInit() {
-    this.httpClient.get<Car[]>('http://localhost:4250/cars')
-      //.toPromise()
-      //.then(cars => this.cars = cars);
-      .subscribe(cars => {
-        this.cars = cars;
-      })
+    this.cars$ = this.store.pipe(select('cars'));
+    this.store.dispatch(new RefreshCarsRequestAction());
   }
 
 }

@@ -1,8 +1,1 @@
-<table>
-  <tbody>
-    <tr *ngFor="let car of cars">
-      <td>{{car.id}}</td>
-      <td>{{car.make}}</td>
-    </tr>
-  </tbody>
-</table>
+<app-car-table [cars]="cars$ | async"></app-car-table>
