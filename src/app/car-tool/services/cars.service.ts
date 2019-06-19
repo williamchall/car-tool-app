@@ -12,5 +12,14 @@ export class CarsService {
 
   all() {
     return this.httpClient.get<Car[]>('http://localhost:4250/cars');
+
+  }
+
+  appendCar(car: Car) {
+    return this.httpClient.post<Car>('http://localhost:4250/cars', car);
+  }
+
+  deleteCar(car: Car) {
+    //return this.httpClient.delete<Car>('http://localhost:4250/cars', car);
   }
 }

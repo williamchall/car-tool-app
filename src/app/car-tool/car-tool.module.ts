@@ -8,16 +8,18 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { carsReducer } from './car-tool.reducers';
 import { CarToolEffects } from './car-tool.effects';
+import { CarFormComponent } from './components/car-form/car-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [CarHomeComponent, CarTableComponent],
+  declarations: [CarHomeComponent, CarTableComponent, CarFormComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     StoreModule.forRoot({ cars: carsReducer }),
     EffectsModule.forRoot([CarToolEffects]),
     StoreDevtoolsModule.instrument(),
-
+    ReactiveFormsModule
   ],
   exports: [CarHomeComponent]
 })

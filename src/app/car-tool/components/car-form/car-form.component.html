@@ -1,0 +1,18 @@
+<div>
+  <label>
+    Make:
+    <input type="text" [formControl]="make">
+  </label> 
+  <label>
+    Model:
+    <input type="text" [formControl]="model">
+  </label> 
+  <label>
+    Year:
+    <input type="text" [formControl]="year">
+  </label>
+
+  <p>
+    <button (click)="doAddCar()">Add Car</button>
+  </p>
+</div>
